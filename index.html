@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Form Validation</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+    <div class="container register">
+      <h1>Register</h1>
+      <form action="" id="form" class="form">
+        <div class="control-wrapper">
+          <input
+            type="text"
+            id="username"
+            placeholder="Enter your username"
+            autocomplete="off"
+          />
+          <span>Error Message</span>
+        </div>
+        <div class="control-wrapper">
+          <input
+            type="text"
+            id="email"
+            placeholder="Enter your email"
+            autocomplete="off"
+          />
+          <span>Error Message</span>
+        </div>
+        <div class="control-wrapper">
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+          />
+          <span>Error Message</span>
+        </div>
+        <div class="control-wrapper">
+          <input
+            type="password"
+            id="password2"
+            placeholder="Reenter your password"
+          />
+          <span>Error Message</span>
+        </div>
+        <button class='register-btn' type="submit">Submit</button>
+      </form>
+    </div>
+    <!------------------------->
+    <div class="container login">
+      <h1 class='logginH11'><i class="fas fa-check-square"></i><br> Succesfully registered</h1>
+      <h1 class='logginH12'>Login</h1>
+    <form action="" id='loggin' class='form'  >
+        <div class="control-wrapper">
+          <input
+            type="text"
+            id="logginUsername"
+            placeholder="Username"
+          />
+          <span></span>
+      </div>
+      <div class="control-wrapper">
+        <input
+          type="password"
+          id="logginPassword"
+          placeholder="Enter your password"
+        />
+        <span></span>
+        <button class='login-btn' type="submit">Submit</button>
+    </form>
+</div>
+</div>
+    <script src="app.js"></script>
+  </body>
+</html>
