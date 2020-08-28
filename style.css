@@ -118,10 +118,12 @@ h1 {
 .form button:focus {
   outline: none;
 }
-@media screen and (max-device-width: 768px) {
-  container {
-    width: 300px;
-  }
+.form h2 {
+  text-align: center;
+  padding: 20px;
+}
+#loggin .account-register {
+  margin: 0;
 }
 .login {
   display: none;
@@ -134,3 +136,8 @@ h1 {
   display: none;
 }
 /********************************************/
+@media screen and (max-device-width: 768px) {
+  container {
+    width: 300px;
+  }
+}

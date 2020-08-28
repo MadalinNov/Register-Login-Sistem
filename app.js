@@ -7,7 +7,8 @@ const logginForm = document.getElementById("loggin");
 const loginBtn = document.querySelector(".login-btn");
 const logginUser = document.getElementById("logginUsername");
 const logginPass = document.getElementById("logginPassword");
-
+const accountRegistered = document.querySelector(".account-loggin");
+const notRegistered = document.querySelector(".account-register");
 //Event Listeners
 document.addEventListener("DOMContentLoaded", () => {
   //REGISTER Listener
@@ -24,25 +25,40 @@ document.addEventListener("DOMContentLoaded", () => {
   loginBtn.addEventListener("click", function (e) {
     e.preventDefault();
     requiredCheck([logginUser, logginPass]);
-    const user = localStorage.getItem(`${username.value} new user`);
-
+    // const user = localStorage.getItem(`${curentUser.username.value} new user`);
     let curentUser = {
       username: document.getElementById("logginUsername").value,
       password: document.getElementById("logginPassword").value,
     };
+    const user = localStorage.getItem(`${curentUser.username} new user`);
     const curentUserStr = JSON.stringify(curentUser);
+    console.log(user);
     if (user === curentUserStr) {
       logginForm.classList.add("active");
+      document.querySelector(".logginH11").style.display = "block";
       document.querySelector(".logginH11").textContent =
         "Succesfully Logged In";
-      document.querySelector(".logginH12").textContent = username.value;
+      document.querySelector(".logginH12").textContent = curentUser.username;
     } else {
       document.querySelector(".logginH11").textContent = "Try Again";
       displayError(logginUser, "Username is invalid");
       displayError(logginPass, "Password is invalid");
     }
   });
+  accountRegistered.addEventListener("click", function () {
+    var register = document.querySelector(".register");
+    var login = document.querySelector(".login");
+    document.querySelector(".logginH11").textContent = "Login";
+    document.querySelector(".logginH12").textContent = username.value;
+    register.style.display = "none";
+    login.style.display = "block";
+  });
+  notRegistered.addEventListener("click", function () {
+    register.style.display = "block";
+    login.style.display = "none";
+  });
 });
+
 //functions
 //Input field name
 function fieldName(input) {
