@@ -9,54 +9,45 @@ const logginUser = document.getElementById("logginUsername");
 const logginPass = document.getElementById("logginPassword");
 const accountRegistered = document.querySelector(".account-loggin");
 const notRegistered = document.querySelector(".account-register");
+const register = document.querySelector(".register");
+const login = document.querySelector(".login");
 //Event Listeners
-document.addEventListener("DOMContentLoaded", () => {
-  //REGISTER Listener
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    requiredCheck([username, email, password, password2]);
-    lengthCheck(username, 3, 15);
-    lengthCheck(password, 6, 25);
-    passwordCheck(password, password2);
-    emailCheck(email);
-  });
-
-  //LOGGIN Listener
-  loginBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    requiredCheck([logginUser, logginPass]);
-    // const user = localStorage.getItem(`${curentUser.username.value} new user`);
-    let curentUser = {
-      username: document.getElementById("logginUsername").value,
-      password: document.getElementById("logginPassword").value,
-    };
-    const user = localStorage.getItem(`${curentUser.username} new user`);
-    const curentUserStr = JSON.stringify(curentUser);
-    console.log(user);
-    if (user === curentUserStr) {
-      logginForm.classList.add("active");
-      document.querySelector(".logginH11").style.display = "block";
-      document.querySelector(".logginH11").textContent =
-        "Succesfully Logged In";
-      document.querySelector(".logginH12").textContent = curentUser.username;
-    } else {
-      document.querySelector(".logginH11").textContent = "Try Again";
-      displayError(logginUser, "Username is invalid");
-      displayError(logginPass, "Password is invalid");
-    }
-  });
-  accountRegistered.addEventListener("click", function () {
-    var register = document.querySelector(".register");
-    var login = document.querySelector(".login");
-    document.querySelector(".logginH11").textContent = "Login";
-    document.querySelector(".logginH12").textContent = username.value;
-    register.style.display = "none";
-    login.style.display = "block";
-  });
-  notRegistered.addEventListener("click", function () {
-    register.style.display = "block";
-    login.style.display = "none";
-  });
+//REGISTER Listener
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  requiredCheck([username, email, password, password2]);
+  lengthCheck(username, 3, 15);
+  lengthCheck(password, 6, 25);
+  passwordCheck(password, password2);
+  emailCheck(email);
+});
+// LOGGIN Listener
+loginBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  requiredCheck([logginUser, logginPass]);
+  let curentUser = {
+    username: document.getElementById("logginUsername").value,
+    password: document.getElementById("logginPassword").value,
+  };
+  const user = localStorage.getItem(`${curentUser.username} new user`);
+  const curentUserStr = JSON.stringify(curentUser);
+  if (user === curentUserStr) {
+    logginForm.classList.add("active");
+    document.querySelector(".logginH11").style.display = "block";
+    document.querySelector(".logginH11").textContent = "Succesfully Logged In";
+    document.querySelector(".logginH12").textContent = curentUser.username;
+  } else {
+    document.querySelector(".logginH11").textContent = "Try Again";
+    displayError(logginUser, "Username is invalid");
+    displayError(logginPass, "Password is invalid");
+  }
+});
+accountRegistered.addEventListener("click", function () {
+  registered();
+});
+notRegistered.addEventListener("click", function () {
+  e.preventDefault();
+  noAccount();
 });
 
 //functions
@@ -76,14 +67,10 @@ function requiredCheck(inputArr) {
         password: document.getElementById("password").value,
       };
       localStorage.setItem(`${username.value} new user`, JSON.stringify(user));
-      document.querySelector("h1").textContent = "Succesfully Registered";
-      var register = document.querySelector(".register");
-      var login = document.querySelector(".login");
-      register.style.display = "none";
-      login.style.display = "block";
     }
   });
 }
+
 //Input Error Message
 function displayError(input, message) {
   const controlWrapper = input.parentElement;
@@ -96,6 +83,7 @@ function displaySuccess(input) {
   const controlWrapper = input.parentElement;
   controlWrapper.className = "control-wrapper success";
 }
+
 //length check
 function lengthCheck(input, min, max) {
   if (input.value.length < min) {
@@ -110,8 +98,8 @@ function lengthCheck(input, min, max) {
     );
   }
 }
-// password validation
 
+// password validation
 function passwordCheck(input1, input2) {
   if (input1.value !== input2.value) {
     displayError(input2, `Passwords are not matching`);
@@ -126,4 +114,19 @@ function emailCheck(input) {
   } else {
     displayError(input, `Email is not valid`);
   }
+}
+//already registered
+
+function registered() {
+  var register = document.querySelector(".register");
+  var login = document.querySelector(".login");
+  document.querySelector(".logginH11").textContent = "Login";
+  document.querySelector(".logginH12").textContent = username.value;
+  register.style.display = "none";
+  login.style.display = "block";
+}
+// not registered
+function noAccount() {
+  register.style.display = "block";
+  login.style.display = "none";
 }

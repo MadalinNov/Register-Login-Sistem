@@ -130,7 +130,7 @@ h1 {
   height: 430px;
 }
 .login button {
-  margin-top: 100px;
+  margin-top: 5px;
 }
 .login .active {
   display: none;
